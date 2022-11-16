@@ -15,11 +15,8 @@ export default {
     methods:{
         addTodo: function(){
             if(this.newTodoItem !== ''){
-                // localstorage << 쿠키의 상위호환
-                // 로컬스토리지는 최대 5MB 쿠키는 최대 4MB 그리고 네트워크 통신을 더 적게 할 수 있다
-                var obj = {completed:false, item: this.newTodoItem};
-                // JSON 자바스크립트값을 객체로 넣는 방법 -> 스토리지 value값에 배열로 넣는 작업
-                localStorage.setItem(this.newTodoItem, JSON.stringify(obj));
+                // this.$emit('이벤트 이름',인자1,인자2...);
+                this.$emit('addTodoItem',this.newTodoItem);
                 this.clearInput();
             }
         },
