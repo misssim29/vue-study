@@ -66,7 +66,7 @@ export default {
 </script>
 
 <style>
-body{font-family: 'Noto Sans KR', sans-serif;}
+body{font-family: 'Noto Sans KR', sans-serif; margin:0; padding:0; width:100vw;}
 body{text-align: center; background-color: #F6F6F6;}
 input{border-style:groove; width:200px;}
 button{border-style:groove}
