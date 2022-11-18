@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //ES5 함수 정의 방식
+        var sum = function(a,b){
+            return a + b;
+        }
+        var sum = (a,b) => {
+            return a + b;
+        }
+        console.log(sum(10,20));
+
+        //ES5
+        var arr = ["a","b","c"];
+        arr.forEach(function(value){
+            console.log(value);
+        });
+
+        //ES6
+        var arr = ["a","b","c"];
+        arr.forEach(value => console.log(value));
+
+
+        var dic = {
+            lookup(){
+                console.log('dic');
+            }
+        }
+        dic.lookup();
+    </script>
+</body>
+</html>
