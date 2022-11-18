@@ -24,7 +24,7 @@ export default {
   },
   methods:{
     addOneItem: function(newtodoItem){
-      // localstorage << 쿠키의 상위호환
+      // localstorage << 쿠키의 상위호환 버전
       // 로컬스토리지는 최대 5MB 쿠키는 최대 4MB 그리고 네트워크 통신을 더 적게 할 수 있다
       var obj = {completed:false, item: newtodoItem};
       // JSON 자바스크립트값을 객체로 넣는 방법 -> 스토리지 value값에 배열로 넣는 작업
