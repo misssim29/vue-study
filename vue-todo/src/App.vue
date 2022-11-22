@@ -5,21 +5,23 @@
     <TodoInput v-on:addTodoItem="addOneItem"></TodoInput>
     <TodoList v-bind:propsdata="todoItems" v-on:removeItem="removeOneItem" v-on:toggleItem="toggleOneItem"></TodoList>
     <TodoFooter v-on:removeAll="removeAllClick"></TodoFooter>
+
   </div>
 </template>
 
 <script>
+import { defineComponent } from 'vue';
 import TodoHeader from './components/TodoHeader.vue';
 import TodoInput from './components/TodoInput.vue';
 import TodoList from './components/TodoList.vue';
 import TodoFooter from './components/TodoFooter.vue';
 
 
-export default {
+export default defineComponent({
   name: 'App',
   data(){
     return {
-      todoItems: []
+      todoItems: [],
     }
   },
   methods:{
@@ -61,8 +63,10 @@ export default {
     TodoInput,
     TodoList,
     TodoFooter
+  },
+  setup(){
   }
-}
+});
 </script>
 
 <style>
