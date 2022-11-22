@@ -23,11 +23,11 @@ const routes = [
         component: AskView,
     },
     {
-        path: "/item/:id",
+        path: "/item",
         component: ItemView,
     },
     {
-        path: "/user/:id",
+        path: "/user",
         component: UserView,
     },
 ];
