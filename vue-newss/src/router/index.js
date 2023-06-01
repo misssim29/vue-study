@@ -1,7 +1,5 @@
 import { createWebHistory, createRouter } from "vue-router";
-import AskView from "../views/AskView.vue";
-import JobsView from "../views/JobsView.vue";
-import NewsView from "../views/NewsView.vue";
+import ListView from "../views/ListView.vue";
 import ItemView from "../views/ItemView.vue";
 import UserView from "../views/UserView.vue";
 
@@ -11,22 +9,27 @@ const routes = [
         redirect:'/news',
     },
     {
+        name : 'news',
         path: "/news",
-        component: NewsView,
+        component: ListView,
     },
     {
+        name : 'jobs',
         path: "/jobs",
-        component: JobsView,
+        component: ListView,
     },
     {
+        name : 'ask',
         path: "/ask",
-        component: AskView,
+        component: ListView,
     },
     {
-        path: "/item",
+        name : 'item',
+        path: "/item/:id",
         component: ItemView,
     },
     {
+        name : 'user',
         path: "/user/:id",
         component: UserView,
     },

@@ -5,11 +5,9 @@ import actions from './actions.js';
 // [store 데이터 설정 실시]
 const store = createStore ({
   state: { // [변수들의 집합]
-    news: [],
-    jobs:[],
-    ask:[],
+    listdata: [],
     user:'',
-    items: ''
+    items: '',
   },
   getters: { // [state의 변수들을 get 호출]
     fetchedAsk(state){

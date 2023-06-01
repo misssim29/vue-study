@@ -1,24 +1,29 @@
 <template>
   <div>
-    <div class="flex user">
-      <i class="fa-regular fa-user"></i>
-      <p>id : {{ Info.id }}</p>
-    </div>
-    <router-link :to="'/user/'+Info.user">{{ Info.user }}</router-link>
+    <user-profile :info="Info">
+      <template #username>
+        <router-link :to="'/user/'+Info.user"><h2>{{ Info.user }}</h2></router-link>
+      </template>
+      <template #time><span>{{ 'created ' + Info.time_ago }}</span></template>
+    </user-profile>
     <p>title : {{ Info.title }}</p>
     <div v-html="Info.content"></div>
   </div>
 </template>
 
 <script>
+import UserProfile from '../components/UserProfile.vue';
 export default {
+  components: {
+    UserProfile
+  },
   computed:{
     Info(){
       return this.$store.state.items;
     }
   },
   created(){
-    const userId = this.$route.query.id;
+    const userId = this.$route.params.id;
     this.$store.dispatch('FETCH_ITEM',userId);
   }
 }
