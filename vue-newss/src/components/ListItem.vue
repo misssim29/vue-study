@@ -52,19 +52,7 @@ export default {
     methods:{
         RouteChange(){
             this.param = this.$route.name;
-            let actionName = '';
-            switch(this.$route.name){
-                case 'news':
-                    actionName = 'FETCH_NEWS';
-                break;
-                case 'jobs':
-                    actionName = 'FETCH_JOBS';
-                break;
-                case 'ask':
-                    actionName = 'FETCH_ASK';
-                break;
-            }
-            this.$store.dispatch(actionName);
+            this.$store.dispatch('FETCH_List',this.$route.name);
         }
     }
 }

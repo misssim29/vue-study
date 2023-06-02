@@ -1,12 +1,6 @@
 export default {
-    SET_NEWS(state, newsdata){
+    SET_List(state, newsdata){
         state.listdata = newsdata;
-    },
-    SET_JOBS(state, jobsdata){
-        state.listdata = jobsdata;
-    },
-    SET_ASK(state, askdata){
-        state.listdata = askdata;
     },
     SET_USER(state, userdata){
         state.user = userdata;

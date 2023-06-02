@@ -1,18 +1,8 @@
-import { fetchNewsList, fetchJobsList, fetchAskList, fetchUserInfo, fetchItem } from '../api/index.js';
+import { fetchList, fetchUserInfo, fetchItem } from '../api/index.js';
 export default {
-    FETCH_NEWS(res){
-        fetchNewsList()
-        .then(response => res.commit('SET_NEWS', response.data))
-        .catch(error => console.log(error));
-    },
-    FETCH_JOBS(res){
-        fetchJobsList()
-        .then(response => res.commit('SET_JOBS', response.data))
-        .catch(error => console.log(error));
-    },
-    FETCH_ASK(res){
-        fetchAskList()
-        .then(response => res.commit('SET_ASK', response.data))
+    FETCH_List(res,page){
+        fetchList(page)
+        .then(response => res.commit('SET_List', response.data))
         .catch(error => console.log(error));
     },
     FETCH_USER(res, name){
