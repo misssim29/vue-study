@@ -19,60 +19,79 @@ import TodoFooter from './components/TodoFooter.vue';
 
 export default defineComponent({
   name: 'App',
-  data(){
+  data() {
     return {
       todoItems: [],
     }
   },
-  methods:{
-    addOneItem(newtodoItem){
+  methods: {
+    addOneItem(newtodoItem) {
       // localstorage << 쿠키의 상위호환 버전
       // 로컬스토리지는 최대 5MB 쿠키는 최대 4MB 그리고 네트워크 통신을 더 적게 할 수 있다
-      const obj = {completed:false, item: newtodoItem};
+      const obj = { completed: false, item: newtodoItem };
       // JSON 자바스크립트값을 객체로 넣는 방법 -> 스토리지 value값에 배열로 넣는 작업
       localStorage.setItem(this.todoItem, JSON.stringify(obj));
       this.todoItems.push(obj);
     },
-    removeOneItem(todoItem, index){
+    removeOneItem(todoItem, index) {
       localStorage.removeItem(todoItem.item);
-      this.todoItems.splice(index,1);
+      this.todoItems.splice(index, 1);
     },
-    removeAllClick(){
+    removeAllClick() {
       localStorage.clear();
       this.todoItems = [];
     },
-    toggleOneItem(todoItem,index){
-        this.todoItems[index].completed = !this.todoItems[index].completed;
-        localStorage.removeItem(todoItem.item)
-        localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
+    toggleOneItem(todoItem, index) {
+      this.todoItems[index].completed = !this.todoItems[index].completed;
+      localStorage.removeItem(todoItem.item)
+      localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
     }
   },
   // 라이프사이클
-  created(){
-        if(localStorage.length > 0){
-            for(let i=0;i<localStorage.length;i++){
-                if(localStorage.key(i) !== 'loglevel:webpack-dev-server'){
-                    //배열 꺼내는것
-                    this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
-                }
-            }
-        } 
-    },
+  created() {
+    if (localStorage.length > 0) {
+      for (let i = 0; i < localStorage.length; i++) {
+        if (localStorage.key(i) !== 'loglevel:webpack-dev-server') {
+          //배열 꺼내는것
+          this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
+        }
+      }
+    }
+  },
   components: {
     TodoHeader,
     TodoInput,
     TodoList,
     TodoFooter
   },
-  setup(){
+  setup() {
   }
 });
 </script>
 
 <style>
-body{font-family: 'Noto Sans KR', sans-serif; margin:0; padding:0; width:100vw;}
-body{text-align: center; background-color: #F6F6F6;}
-input{border-style:groove; width:200px;}
-button{border-style:groove}
-.shadow{box-shadow: 5px 10px 10px rgba(0,0,0,0.03);}
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+}
+
+body {
+  text-align: center;
+  background-color: #F6F6F6;
+}
+
+input {
+  border-style: groove;
+  width: 200px;
+}
+
+button {
+  border-style: groove
+}
+
+.shadow {
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.03);
+}
 </style>
