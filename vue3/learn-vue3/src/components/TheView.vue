@@ -1,30 +1,11 @@
 <template>
 	<main>
-		<div class="container text-center py-4">
-			<div class="row g-3">
-				<div class="col col-4"><AppCard></AppCard></div>
-				<div class="col col-4"><AppCard></AppCard></div>
-				<div class="col col-4"><AppCard></AppCard></div>
-			</div>
-			<div class="row g-3">
-				<div class="col col-4"></div>
-				<div class="col col-4"></div>
-				<div class="col col-4"></div>
-			</div>
-		</div>
+		<DynamicComponent></DynamicComponent>
 	</main>
 </template>
 
-<script>
-import AppCard from '@/components/AppCard.vue';
-export default {
-	components: {
-		AppCard,
-	},
-	setup() {
-		return {};
-	},
-};
+<script setup>
+import DynamicComponent from './DynamicComponent.vue';
 </script>
 
 <style lang="scss" scoped></style>

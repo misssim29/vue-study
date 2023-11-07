@@ -2,7 +2,6 @@
 	<div>
 		<the-nav></the-nav>
 		<the-view></the-view>
-		<div class="scss">ddd</div>
 	</div>
 </template>
 

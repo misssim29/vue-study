@@ -7,5 +7,7 @@ import App from './App.vue';
 
 const app = createApp(App);
 // app.component('AppCard', AppCard);
-app.mount('#app');
+
+app.config.globalProperties.msg = 'hello';
+app.provide('app-message', 'app message 입니다.').mount('#app');
 import 'bootstrap/dist/js/bootstrap.js';
