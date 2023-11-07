@@ -139,7 +139,7 @@ css: {
 },
 ```
 
-### v-model 자식부모 양방향 바인딩
+## v-model 자식부모 양방향 바인딩
 username에 담겨있는 데이터를 자식으로 내리고 다시 변경된 데이터를 부모로 옮겨올수있다.
 ```
 //부모컴포넌트
@@ -154,12 +154,12 @@ props: ['modelValue', 'label'],
 emit: ['update:modelValue'],
 ```
 
-### props되는 속성 상속 막기
+## props되는 속성 상속 막기
 ```
 inheritAttrs: false,
 ```
 
-### 특정 엘레먼트에 props되는 속성 물려주기
+## 특정 엘레먼트에 props되는 속성 물려주기
 v-bind="$attrs"로 물려줄수 있다.
 ```
 <button type="button" class="btn btn-primary" v-bind="$attrs">
@@ -167,7 +167,7 @@ v-bind="$attrs"로 물려줄수 있다.
 </button>
 ```
 
-### Provide와 Inject
+## Provide와 Inject
 컴포넌트가 딥해질때 최상위컴포넌트에서 맨아래컴포넌트까지 데이터를 한번에 내릴수 있는 방법
 ```
 상위 컴포넌트에서 키,값 형태로 provide로 값을 넘긴다
@@ -179,7 +179,7 @@ const message = inject('message','default');
 
 ```
 
-### getElementId 대신 ref로 선택자 가져오는 방법
+## getElementId 대신 ref로 선택자 가져오는 방법
 html에서 ref값과 setup에서 ref를 담은 변수값을 동일하게 해서 하면 연결이 된다.
 ```
 <input type="text" ref="inputRef" />
@@ -190,7 +190,7 @@ onMounted(() => {
 return { inputRef };
 ```
 
-### ref로 부모 자식간 쉽게접근하는법 (하지만 일반적으로 emit이나 props를 사용하는게 좋다)
+## ref로 부모 자식간 쉽게접근하는법 (하지만 일반적으로 emit이나 props를 사용하는게 좋다)
 - 부모->자식 데이터접근
 자식컴포넌트에 ref를 부여해 setup에서 ref명.value로 함수나 변수에 접근가능
 ```
@@ -204,7 +204,7 @@ $parent를 사용해 부모의 데이터에 접근할 수 있다.
 <li v-for="fruit in $parent.fruits" :key="fruit">{{ fruit }}</li>
 ```
 
-### setup을 사용해서 props, emit 이용방법
+## setup을 사용해서 props, emit 이용방법
 아래와같이 가져와서 사용할 수 있다.
 ```
 //일반형
@@ -219,7 +219,7 @@ const props = defineProps({
 const emit = defineEmits(['toggleLike']);
 ```
 
-### setup에서 componentRef 사용하는법
+## setup에서 componentRef 사용하는법
 ```
 defineExpose({
 	message,
@@ -229,5 +229,5 @@ defineExpose({
 defineExpose를 통해서 원래 setup() 버전에서의 return 역할을 해주는걸 해줘야 부모자식컴포넌트간에 ref 접근이 가능하다.
 
 
-### active-class
+## active-class
 active-class="active" 로 활성화되는 router-link에 class를 줄수있다.
