@@ -231,3 +231,12 @@ defineExpose를 통해서 원래 setup() 버전에서의 return 역할을 해주
 
 ## active-class
 active-class="active" 로 활성화되는 router-link에 class를 줄수있다.
+
+
+## 프론트엔드 db 서버
+처음에 $ npm install json-server --save-dev 로 설치
+package.json에     "db": "json-server --watch db.json --port 5000" 로 포트 및 명령어 설정해서
+npm run db하면 db서버 켜짐
+db는 root디렉토리에 db.json으로 담겨있음
+
+

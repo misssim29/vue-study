@@ -1,0 +1,40 @@
+{
+  "posts": [
+    {
+      "title": "ㅇㄴㅇㄴㅇㄴ",
+      "content": "ㅇㄴㅇㄴㅇㄴㅇ",
+      "createdAt": 1699426756923,
+      "id": 1
+    },
+    {
+      "title": "아니아니야",
+      "content": "ㅇㅇ",
+      "createdAt": 1699426804459,
+      "id": 2
+    },
+    {
+      "title": "ㅇㄴㅁㅇ",
+      "content": "ㅇㅁㄴㅇ",
+      "createdAt": 1699429126270,
+      "id": 5
+    },
+    {
+      "title": "ㅇㅈㅇㅈㅇ",
+      "content": "ㅈㅇㅈㅇㅈㅇㄴㅁ",
+      "createdAt": 1699429129598,
+      "id": 6
+    },
+    {
+      "title": null,
+      "content": null,
+      "createdAt": 1699429132549,
+      "id": 7
+    },
+    {
+      "title": "ㅁㄴㅇㅁㄴ",
+      "content": "ㅇㄴㅁㅇㅁㄴㅇㄴㅁㄴ",
+      "createdAt": 1699430591829,
+      "id": 8
+    }
+  ]
+}
