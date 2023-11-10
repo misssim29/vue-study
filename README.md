@@ -240,3 +240,68 @@ npm run db하면 db서버 켜짐
 db는 root디렉토리에 db.json으로 담겨있음
 
 
+## Teleport
+특정 구간을 다른곳으로 옮기는 기능(데이터땜에 deep 컴포넌트에 소환해서 썼지만 element를 밖으로 뺄 때 사용한다)
+index.html에 넣거나 다른데 넣어도 쓸 수 있을듯?
+
+```
+//index.html
+<div id="app"></div>
+<div id="modal"></div>
+//컴포넌트
+<Teleport to="#modal">
+```
+
+## 컴포넌트 전역으로 등록하기
+plugins/globalComponent.js에 이렇게 설정한 다음 main.js에서 use로 등록해준다.
+그러면 하위컴포넌트에서 맘대로 쓸 수 있음.
+```
+import AppAlert from '@/components/app/AppAlert.vue'ㅣ
+export default {
+	install(app) {
+		app.component('AppAlert', AppAlert);
+	},
+};
+```
+단, 전역으로 등록시 컴포넌트 표시가 vscode에서 되질 않는데 그건
+npm i unplugin-vue-components -D
+라이브러리를 설치해서 해결 할 수 있다. 설치하고 config파일에서
+```
+    plugins: [
+		Component({
+			dts: true,
+		}),
+	],
+```
+를 쓰고 서버를 껐다 키면 components.d.ts 파일이 생기며 알아서 연결해준다. (vite기준이라 nuxt는 다를수도있음)
+아니면 components.d.ts에 바로 써서 설정가능
+
+## 커스텀 디렉티브 등록 (컴포넌트에 적용하는건 권장하지 않는다고함)
+-마운트되면 바로 input에 포커스 주기
+```
+<input v-focus type="text" />
+const vFocus = {
+	mounted: el => {
+		el.focus();
+	},
+};
+```
+-디렉티브 전역으로 등록
+directives/focus.js에
+```
+export default {
+	mounted: el => {
+		el.focus();
+	},
+};
+등록하고 main.js에
+app.directive('focus', focus);
+로 연결하면 컴포넌트에서 앞에 v-를 붙여 사용할 수 있다.
+```
+
+## 날짜 포맷 라이브러리 dayjs
+설치 npm i dayjs
+
+## pinia
+### 설치
+npm i pinia

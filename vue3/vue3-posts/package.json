@@ -8,12 +8,14 @@
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "format": "prettier --write src/",
-    "db": "json-server --watch db.json --port 5000"
+    "db": "json-server --watch db.json --port 5000 --delay 200"
   },
   "dependencies": {
     "axios": "^1.6.0",
     "bootstrap": "^5.3.2",
     "bootstrap-icons": "^1.11.1",
+    "dayjs": "^1.11.10",
+    "pinia": "^2.1.7",
     "vue": "^3.3.4",
     "vue-router": "^4.2.5"
   },
@@ -25,6 +27,7 @@
     "eslint-plugin-vue": "^9.17.0",
     "json-server": "^0.17.4",
     "prettier": "^3.0.3",
+    "unplugin-vue-components": "^0.25.2",
     "vite": "^4.4.11"
   }
 }

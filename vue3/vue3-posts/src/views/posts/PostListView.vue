@@ -5,27 +5,47 @@
 		<PostFilter
 			v-model:title="params.title_like"
 			v-model:limit="params._limit"
+			@update:limit="changeLimit"
 		></PostFilter>
 		<hr class="my-4" />
-		<AppGrid colClass="col-4" :items="posts">
-			<template v-slot="{ item }">
-				<PostItem
-					:title="item.title"
-					:content="item.content"
-					:createdAt="item.createdAt"
-					@click="goPage(item.id)"
-				></PostItem>
-			</template>
-		</AppGrid>
-		<AppPagination
-			:currentPage="params._page"
-			:pageCount="pageCount"
-			@page="page => (params._page = page)"
-		></AppPagination>
-		<template v-if="posts && posts.length > 0">
+
+		<AppLoading v-if="loading" />
+		<AppError v-else-if="error" :message="error.message" />
+
+		<template v-else-if="!isExist">
+			<p class="text-center py-5 text-muted">No Result</p>
+		</template>
+		<template v-else>
+			<AppGrid colClass="col-4" :items="posts">
+				<template v-slot="{ item }">
+					<PostItem
+						:title="item.title"
+						:content="item.content"
+						:createdAt="item.createdAt"
+						@click="goPage(item.id)"
+						@modal="openModal(item)"
+						@preview="selectPreview(item.id)"
+					></PostItem>
+				</template>
+			</AppGrid>
+			<AppPagination
+				:currentPage="params._page"
+				:pageCount="pageCount"
+				@page="page => (params._page = page)"
+			></AppPagination>
+		</template>
+		<Teleport to="#modal">
+			<PostModal
+				v-model="show"
+				:title="modalTitle"
+				:content="modalContent"
+				:createdAt="modalCreatedAt"
+			/>
+		</Teleport>
+		<template v-if="previewId">
 			<hr class="my-5" />
 			<AppCard>
-				<PostDetailView :id="1"></PostDetailView>
+				<PostDetailView :id="previewId"></PostDetailView>
 			</AppCard>
 		</template>
 	</div>
@@ -33,17 +53,18 @@
 
 <script setup>
 import PostItem from '@/components/posts/PostItem.vue';
-import { ref, computed, watchEffect } from 'vue';
-import { getPosts } from '@/api/post.js';
+import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
-import AppCard from '@/components/AppCard.vue';
 import PostDetailView from './PostDetailView.vue';
-import AppPagination from '@/components/AppPagination.vue';
-import AppGrid from '@/components/AppGrid.vue';
 import PostFilter from '@/components/posts/PostFilter.vue';
+import PostModal from '@/components/posts/PostModal.vue';
+import { useAxios } from '@/hooks/useAxios.js';
 
 const router = useRouter();
-const posts = ref([]);
+
+const previewId = ref(null);
+const selectPreview = id => (previewId.value = id);
+
 const params = ref({
 	_limit: 3,
 	_page: 1,
@@ -51,21 +72,37 @@ const params = ref({
 	_order: 'desc',
 	title_like: '',
 });
-const totalCount = ref(0);
+const changeLimit = value => {
+	params.value._limit = value;
+	params.value._page = 1;
+};
+const {
+	response,
+	data: posts,
+	error,
+	loading,
+} = useAxios('/posts', { method: 'get', params });
+
+const isExist = computed(() => posts.value && posts.value.length > 0);
+
+const totalCount = computed(() => response.value.headers['x-total-count']);
 const pageCount = computed(() => {
 	return Math.ceil(totalCount.value / params.value._limit);
 });
 
-const fetchPosts = async () => {
-	try {
-		const { data, headers } = await getPosts(params.value);
-		posts.value = data;
-		totalCount.value = headers['x-total-count'];
-	} catch (error) {
-		console.log(error);
-	}
-};
-watchEffect(fetchPosts);
+// const fetchPosts = async () => {
+// 	try {
+// 		loading.value = true;
+// 		const { data, headers } = await getPosts(params.value);
+// 		posts.value = data;
+// 		totalCount.value = headers['x-total-count'];
+// 	} catch (err) {
+// 		error.value = err;
+// 	} finally {
+// 		loading.value = false;
+// 	}
+// };
+// watchEffect(fetchPosts);
 
 const goPage = id => {
 	// router.push(`/posts/${id}`);
@@ -80,6 +117,17 @@ const goPage = id => {
 		// hash: '#world',
 	});
 };
+const show = ref(false);
+const openModal = ({ title, content, createdAt }) => {
+	show.value = true;
+	modalTitle.value = title;
+	modalContent.value = content;
+	modalCreatedAt.value = createdAt;
+};
+
+const modalTitle = ref('');
+const modalContent = ref('');
+const modalCreatedAt = ref('');
 </script>
 
 <style lang="scss" scoped></style>

@@ -26,7 +26,6 @@
 </template>
 
 <script>
-import AppCard from '@/components/AppCard.vue';
 import PostCreate from '@/components/PostCreate.vue';
 import LabelInput from '@/components/LabelInput.vue';
 import LabelTitle from '@/components/LabelInput.vue';

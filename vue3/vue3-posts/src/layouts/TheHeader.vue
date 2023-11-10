@@ -2,7 +2,7 @@
 	<header>
 		<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="#">Vue3</a>
+				<RouterLink to="/" class="navbar-brand"> Vue3 </RouterLink>
 				<button
 					class="navbar-toggler"
 					type="button"
@@ -53,6 +53,15 @@
 								active-class="active"
 							>
 								Nested
+							</RouterLink>
+						</li>
+						<li class="nav-item">
+							<RouterLink
+								class="nav-link"
+								to="/my"
+								active-class="active"
+							>
+								My Page
 							</RouterLink>
 						</li>
 					</ul>
